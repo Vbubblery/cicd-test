@@ -25,12 +25,30 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      - name: Create new branch
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          git fetch
+          git checkout -b new-branch
+          git push origin new-branch
+
+      # - name: "Login via Azure CLI"
+      #   uses: azure/login@v1
+      #   with:
+      #     creds: ${{ secrets.AZURE_CREDENTIALS }}
+      # - name: Pull secret from key vault
+      #   uses: azure/CLI@v1
+      #   id: key-vault
+      #   with:
+      #     azcliversion: 2.30.0
+      #     inlineScript: |
+      #       echo "FLOWLITY-ROBOT-CICD-PRIVATE-KEY=$(az keyvault secret show --vault-name v-flowlity-global --name FLOWLITY-ROBOT-CICD-PRIVATE-KEY --query \"value\" -o tsv)" >> $GITHUB_OUTPUT
+      # - uses: tibdex/github-app-token@v1
+      #   id: generate-token
+      #   with:
+      #     app_id: "268466"
+      #     private_key: ${{ steps.key-vault.outputs.FLOWLITY-ROBOT-CICD-PRIVATE-KEY }}
+      # - uses: actions/checkout@v2
+      #   with:
+      #     token: ${{ steps.generate-token.outputs.token }}
+      #     ref: "main"
+      
