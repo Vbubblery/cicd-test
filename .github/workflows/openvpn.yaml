@@ -1,0 +1,13 @@
+name: openvpn
+
+on:
+  workflow_dispatch:
+
+  deployment:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install OpenVPN
+        run: |
+          sudo apt update
+          sudo apt install -y openvpn openvpn-systemd-resolved
