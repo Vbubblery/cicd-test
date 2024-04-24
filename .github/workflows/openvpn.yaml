@@ -3,8 +3,7 @@ name: openvpn
 on:
   workflow_dispatch:
 jobs:
-  deployment:
-    needs: build
+  install:
     runs-on: ubuntu-latest
     steps:
       - name: Install OpenVPN
